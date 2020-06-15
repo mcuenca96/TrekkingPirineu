@@ -5,7 +5,21 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
     image: {
-        height: "500px",
+        height: "400px",
+    },
+    title: {
+        fontSize: "4rem",
+        margin: "0%",
+    },
+
+    div: {
+        color: "#fff",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
     },
 })
 
@@ -28,7 +42,11 @@ const TrekkingImage = () => {
             className={classes.image}
             tag="section"
             fluid={image.sharp.fluid}
-        ></BackgroundImage>
+        >
+            <div className={classes.div}>
+                <h1 className={classes.title}>Les nostres rutes</h1>
+            </div>
+        </BackgroundImage>
     )
 }
 

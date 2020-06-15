@@ -2,6 +2,8 @@ import React, { Fragment } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Ruta from "./ruta"
 
+import Grid from "@material-ui/core/Grid"
+
 const Rutes = () => {
     const information = useStaticQuery(graphql`
         {
@@ -20,15 +22,14 @@ const Rutes = () => {
     `)
 
     const rutes = information.prismic.allRutas.edges
-    console.log(rutes)
 
     return (
         <Fragment>
-            <div>
+            <Grid container>
                 {rutes.map(ruta => (
                     <Ruta ruta={ruta.node} />
                 ))}
-            </div>
+            </Grid>
         </Fragment>
     )
 }
