@@ -71,7 +71,7 @@ const Ruta = ({ ruta }) => {
 
     return (
         <Fragment>
-            <Grid item xs={6} className={classes.containerimg}>
+            <Grid item xs={6} sm={12} className={classes.containerimg}>
                 <img
                     src={image.url}
                     onClick={handleOpen}

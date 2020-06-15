@@ -22,7 +22,6 @@ const Rutes = () => {
     `)
 
     const rutes = information.prismic.allRutas.edges
-    console.log(rutes)
 
     return (
         <Fragment>
