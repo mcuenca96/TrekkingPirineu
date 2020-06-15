@@ -1,13 +1,12 @@
 import React, { Fragment, useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import BackgroundImage from "gatsby-background-image"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import CardMedia from "@material-ui/core/CardMedia"
-import CardActions from "@material-ui/core/CardActions"
+
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
 
@@ -77,6 +76,7 @@ const Ruta = ({ ruta }) => {
                     src={image.url}
                     onClick={handleOpen}
                     className={classes.img}
+                    alt={title[0].text}
                 />
                 <div className={classes.centered}>{title[0].text}</div>
             </Grid>
