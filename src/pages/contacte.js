@@ -1,41 +1,123 @@
-import React, { Fragment } from "react"
+import React, { useState } from "react"
 import Layout from "../components/layout"
+import Grid from "@material-ui/core/Grid"
+import { graphql, useStaticQuery } from "gatsby"
+import BackgroundImage from "gatsby-background-image"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles(theme => ({
+    img: {
+        position: "fixed !important",
+        top: "0",
+        left: "0",
+        height: "auto",
+        minHeight: "100%",
+        width: "100%",
+    },
+}))
 
 const Contacte = () => {
+    const { image } = useStaticQuery(graphql`
+        query {
+            image: file(relativePath: { eq: "contact-image.jpg" }) {
+                sharp: childImageSharp {
+                    fluid(maxWidth: 3080, quality: 100) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }
+    `)
+    const classes = useStyles()
+
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [message, setMessage] = useState("")
+    const [error, setError] = useState(false)
+
+    const submitForm = e => {
+        e.preventDefault()
+
+        if (
+            name.trim() === "" ||
+            email.trim() === "" ||
+            message.trim() === ""
+        ) {
+            setError(true)
+            return
+        }
+
+        setError(false)
+    }
+
     return (
-        <Layout>
-            <Fragment>
-                <form name="contact" method="POST" data-netlify="true">
-                    <p>
-                        <label>
-                            Your Name: <input type="text" name="name" />
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            Your Email: <input type="email" name="email" />
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            Your Role:{" "}
-                            <select name="role[]" multiple>
-                                <option value="leader">Leader</option>
-                                <option value="follower">Follower</option>
-                            </select>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            Message: <textarea name="message"></textarea>
-                        </label>
-                    </p>
-                    <p>
-                        <button type="submit">Send</button>
-                    </p>
-                </form>
-            </Fragment>
-        </Layout>
+        <BackgroundImage
+            tag="section"
+            fluid={image.sharp.fluid}
+            className={classes.img}
+        >
+            <Layout>
+                <Grid justify="center" container spacing={3}>
+                    <Grid item xs={4} className="mt-4">
+                        <h2 className="text-center">CONTACTE</h2>
+                        {error ? (
+                            <p className="alert alert-danger text-center text-uppercase p3">
+                                Tots els camps són obligatoris
+                            </p>
+                        ) : null}
+                        <form
+                            name="contact"
+                            method="POST"
+                            data-netlify="true"
+                            onSubmit={submitForm}
+                        >
+                            <div className="form-group">
+                                <label className="font-weight-bold">
+                                    Nom:{" "}
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    className="form-control"
+                                    value={name}
+                                    onChange={e => setName(e.target.value)}
+                                />
+
+                                <label className="font-weight-bold">
+                                    Email:{" "}
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className="form-control"
+                                    aria-describedby="emailHelp"
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
+                                />
+
+                                <label className="font-weight-bold">
+                                    Missatge:{" "}
+                                </label>
+                                <textarea
+                                    name="message"
+                                    className="md-textarea form-control"
+                                    rows="5"
+                                    value={message}
+                                    onChange={e => setMessage(e.target.value)}
+                                ></textarea>
+
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary font-weight-bold mt-4 text-uppercase d-block w-100"
+                                >
+                                    Envia
+                                </button>
+                            </div>
+                        </form>
+                    </Grid>
+                </Grid>
+            </Layout>
+        </BackgroundImage>
     )
 }
 
