@@ -38,8 +38,6 @@ const Contacte = () => {
     const [error, setError] = useState(false)
 
     const submitForm = e => {
-        e.preventDefault()
-
         if (
             name.trim() === "" ||
             email.trim() === "" ||
