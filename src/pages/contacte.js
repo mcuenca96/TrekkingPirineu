@@ -75,9 +75,21 @@ const Contacte = () => {
                             name="contact"
                             method="POST"
                             data-netlify="true"
+                            data-netlify-honeypot="bot-field"
                             onSubmit={submitForm}
                         >
                             <div className="form-group">
+                                <input
+                                    type="hidden"
+                                    name="form-name"
+                                    value="contact"
+                                />
+                                <p hidden>
+                                    <label>
+                                        Don’t fill this out:{" "}
+                                        <input name="bot-field" />
+                                    </label>
+                                </p>
                                 <label className="font-weight-bold">
                                     Nom:{" "}
                                 </label>
