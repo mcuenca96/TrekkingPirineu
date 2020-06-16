@@ -14,6 +14,12 @@ const Rutes = () => {
                             title
                             description
                             image
+                            link {
+                                ... on PRISMIC__ExternalLink {
+                                    _linkType
+                                    url
+                                }
+                            }
                         }
                     }
                 }

@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia"
 
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
+import { linkResolver } from "gatsby-source-prismic-graphql"
 
 const useStyles = makeStyles(theme => ({
     containerimg: {
@@ -56,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Ruta = ({ ruta }) => {
-    const { title, description, image } = ruta
+    const { title, description, image, link } = ruta
     const classes = useStyles()
 
     const [open, setOpen] = useState(false)
@@ -71,7 +72,7 @@ const Ruta = ({ ruta }) => {
 
     return (
         <Fragment>
-            <Grid item xs={6} sm={12} className={classes.containerimg}>
+            <Grid item xs={12} sm={6} className={classes.containerimg}>
                 <img
                     src={image.url}
                     onClick={handleOpen}
@@ -103,6 +104,9 @@ const Ruta = ({ ruta }) => {
                             <CardContent>
                                 <h2>{title[0].text}</h2>
                                 <p>{description[0].text}</p>
+                                <a href={link.url} target="_blank">
+                                    {link.url}
+                                </a>
                             </CardContent>
                         </CardActionArea>
                     </Card>
