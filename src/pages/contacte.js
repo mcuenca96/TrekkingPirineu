@@ -4,6 +4,8 @@ import Grid from "@material-ui/core/Grid"
 import { graphql, useStaticQuery } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import { makeStyles } from "@material-ui/core/styles"
+import Swal from "sweetalert2"
+import { navigate } from "@reach/router"
 
 const useStyles = makeStyles(theme => ({
     img: {
@@ -48,6 +50,12 @@ const Contacte = () => {
         }
 
         setError(false)
+        Swal.fire(
+            "Formulari enviat!",
+            "Moltes gràcies pel teu missatge!",
+            "success"
+        )
+        navigate("/")
     }
 
     return (

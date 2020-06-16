@@ -9,7 +9,6 @@ import CardMedia from "@material-ui/core/CardMedia"
 
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
-import { linkResolver } from "gatsby-source-prismic-graphql"
 
 const useStyles = makeStyles(theme => ({
     containerimg: {

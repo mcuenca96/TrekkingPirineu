@@ -18,6 +18,11 @@ const useStyles = makeStyles({
         padding: "1rem",
         marginRight: "1rem",
 
+        "&:hover": {
+            textDecoration: "none",
+            color: "black",
+        },
+
         "&.actual": {
             borderBottom: "2px solid #fff",
         },
